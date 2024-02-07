@@ -12,4 +12,7 @@ Proyecto de hibridación
 > - 
 >
 >   $$x=\sin(\theta) *\cos(\theta) * ||r||$$
->   
+>
+>$$y=\sin(\theta)*\sin(\theta)*||r||$$
+>
+>$$z=\cos(\theta)*||r||$$
