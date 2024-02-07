@@ -25,9 +25,13 @@ Proyecto de hibridación
 >>
 >>   $$\theta \epsilon [0,\pi] ^ \phi \epsilon [0,2*\pi]$$
 >>   Por lo que cada calculo de coordenadas cartesianas en realidad, debería de tener el calculio para lo armónicos individuales por cada hibridación y no solo el rango del campo esférico
+>>   
 >>   ![Representación de las coordenadas esféricas](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/blob/main/assets/The-point-A-on-spherical-plane_Q320.jpg)
 >>   
 >> - El tercer error es de que en la realización de cada armónico esférico, no se considera que es una magintud, es decir
 >>   
 >>  $$Y|\theta,\phi|\^2$$
->>    Por lo que se debe corrgier la falta del cuadrado
+>>    Por lo que se debe corregir la falta del cuadrado
+
+>[!TIP]
+>Al terminar de corregir estos errores se puede realizar una interfaz que sea amigable con los usuarios
