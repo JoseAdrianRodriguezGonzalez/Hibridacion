@@ -23,7 +23,7 @@ Proyecto de hibridación
 >> Por lo que termina siendo un radio extremadamente grande.
 >> - El siguiente error que existe es el uso de $\theta$ y de $\phi$, ya que solamente se está utilizando los valores pertenecientes de cada campo de forma general, sabiendo que:
 >>
->>   $$\theta \epsilon [0,\pi] ^ \phi \epsilon [0,2*\pi]$$
+>>   $$\theta \epsilon [0,\pi] , \phi \epsilon [0,2*\pi]$$
 >>   Por lo que cada calculo de coordenadas cartesianas en realidad, debería de tener el calculio para lo armónicos individuales por cada hibridación y no solo el rango del campo esférico
 >>   
 >>   ![Representación de las coordenadas esféricas](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/blob/main/assets/The-point-A-on-spherical-plane_Q320.jpg)
