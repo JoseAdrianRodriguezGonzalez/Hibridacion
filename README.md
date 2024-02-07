@@ -16,3 +16,9 @@ Proyecto de hibridación
 >   $$y=\sin(\theta) * \cos(\phi) * ||r||$$
 >
 >   $$z=\cos(\theta)*||r||$$
+>> En el código se utilizó como magnitud el resultado de
+>>
+>> $$Y=|\theta,\phi|\^2
+>>
+>> Por lo que termina siendo un radio extremadamente grande.
+>> - El siguiente error que existe es el uso de $\theta$ y de $\phi$
