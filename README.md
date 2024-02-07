@@ -15,3 +15,6 @@ Proyecto de hibridación
 >   y=\sin(\theta)*\sin(\theta)*||r||
 >   z=\cos(\theta)*||r||
 >\end{equation}
+\begin{equation}
+f(x)=y
+\end{equation}
