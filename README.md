@@ -8,9 +8,10 @@ Proyecto de hibridación
 >[!WARNING]
 >El código presenta errores en la parte de la gráfica. Se deben de realizar los siguiente cambios
 >
-> - En el cálculo de las coordendas cartesianas utilizar el radio atómica de Bohr, siendo de esta manera que
->  \begin{equation}
->    x= sin(\theta) *cos(\theta) *||r||
->   y=sin(\theta)*sin(\theta)*||r||
->   z=cos(\theta)*||r||
->   \end{equation}
+> - En el cálculo de las coordendas cartesianas utilizar el radio atómica de Bohr, siendo de esta manera que:
+> - 
+>\begin{equation}
+>   x=\sin(\theta) *\cos(\theta) *||r||
+>   y=\sin(\theta)*\sin(\theta)*||r||
+>   z=\cos(\theta)*||r||
+>\end{equation}
