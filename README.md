@@ -21,4 +21,13 @@ Proyecto de hibridación
 >> $$Y=|\theta,\phi|\^2$$
 >>
 >> Por lo que termina siendo un radio extremadamente grande.
->> - El siguiente error que existe es el uso de $\theta$ y de $\phi$
+>> - El siguiente error que existe es el uso de $\theta$ y de $\phi$, ya que solamente se está utilizando los valores pertenecientes de cada campo de forma general, sabiendo que:
+>>
+>>   $$\theta \epsilon [0,\pi] ^ \phi \epsilon [0,2*\pi]$$
+>>   Por lo que cada calculo de coordenadas cartesianas en realidad, debería de tener el calculio para lo armónicos individuales por cada hibridación y no solo el rango del campo esférico
+>>   ![Representación de las coordenadas esféricas](https://commons.wikimedia.org/wiki/File:Coordenadas_esf%C3%A9ricas_a_rectangulares.svg#/media/Archivo:Coordenadas_esféricas_a_rectangulares.svg)
+>>   
+>> - El tercer error es de que en la realización de cada armónico esférico, no se considera que es una magintud, es decir
+>>   
+>>  $$Y|\theta,\phi|\^2$$
+>>    Por lo que se debe corrgier la falta del cuadrado
