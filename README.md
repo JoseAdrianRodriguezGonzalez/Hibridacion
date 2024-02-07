@@ -11,6 +11,6 @@ Proyecto de hibridación
 > - En el cálculo de las coordendas cartesianas utilizar el radio atómica de Bohr, siendo de esta manera que:
 > - 
 >
->   $x=\sin(\theta) *\cos(\theta) * ||r||$
->   $y=\sin(\theta)*\sin(\theta)*||r||$
->   $z=\cos(\theta)*||r||$
+>   $$x=\sin(\theta) *\cos(\theta) * ||r||$$
+>   $$y=\sin(\theta)*\sin(\theta)*||r||$$
+>   $$z=\cos(\theta)*||r||$$
