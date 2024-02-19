@@ -1,4 +1,4 @@
 # NOTA
 >[!NOTE]
 >
->Para tener un historial de código de versiones, generar pulls para segmentar las versiones del código
+>Aquí se presentó la primera versión del código que si bien presenta varios errores en al meustra de la gráfica 
