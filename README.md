@@ -1,4 +1,4 @@
-# Hirbidacion
+# Hibridacion
 Proyecto de hibridación
 >Este es el código del proyecto que gráfica la hibridación atómica.
 
