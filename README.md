@@ -1,6 +1,6 @@
 # Hibridacion
 Proyecto de hibridación
->Este es el código del proyecto que gráfica la hibridación atómica.
+>El proyeco ya no se encuentra como repositorio sino como un lanzamiento.
 
 >>Texto de presentacion
 >>Lorem ipsum dolo sit amet
