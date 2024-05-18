@@ -1,6 +1,6 @@
 # Hibridacion
 Proyecto de hibridación
->El proyeco ya no se encuentra como repositorio sino como un lanzamiento.
+>El proyecto está seccionado en diversas secciones, y a su vez el lanzamiento de la sección de hibridación
 
 >>Texto de presentacion
 >>Lorem ipsum dolo sit amet
