@@ -76,8 +76,75 @@ class electron:
         r,phi,theta = electron.CartesianToSpherical(self,x,y,z)
         psi = electron.radial(self,r, n, l) * np.real(sph_harm(m, l, phi, theta))
         return psi
-
-
+    def normalized_wf3D_complex(self,n,l,m):
+        x,y,z = electron.Cartesian_definition(self)
+        r,phi,theta = electron.CartesianToSpherical(self,x,y,z)
+        psi = electron.radial(self,r, n, l) * sph_harm(m, l, phi, theta)*np.real(sph_harm(m, l, phi, theta))
+        return psi
+class hibrydization:
+    def __init__(self):
+        pass
+    def sp(self):
+        Spsi = electron.normalized_wf3D(electron,2,0,0)
+        Pzpsi= electron.normalized_wf3D(electron,2,1,0)
+        PSI1=1/np.sqrt(2)*(Spsi-Pzpsi)
+        PSI2=1/np.sqrt(2)*(Spsi+Pzpsi)
+        return PSI1,PSI2
+    def sp2(self):
+        Spsi = electron.normalized_wf3D(electron,2,0,0)
+        Pxpsi= electron.normalized_wf3D(electron,2,1,1)
+        Pzpsi= electron.normalized_wf3D(electron,2,1,0)
+        Pypsi= electron.normalized_wf3D(electron,2,1,-1)
+        PSI2_1=1/np.sqrt(3)*(Spsi+np.sqrt(2)*Pzpsi)
+        PSI2_2=1/np.sqrt(3)*(Spsi-np.sqrt(1/2)*Pxpsi-np.sqrt(3/2)*Pzpsi)
+        PSI2_3=1/np.sqrt(3)*(Spsi-np.sqrt(1/2)*Pxpsi+np.sqrt(3/2)*Pypsi)
+        return PSI2_1,PSI2_2,PSI2_3
+    def sp3(self):
+        Pxpsi=  electron.normalized_wf3D_complex(electron,2,1,1)
+        Spsi =  electron.normalized_wf3D_complex(electron,2,0,0)
+        Pypsi = electron.normalized_wf3D_complex(electron,2,1,-1)
+        Pzpsi = electron.normalized_wf3D_complex(electron,2,1,0)
+        PSI3_1=1/2*(Spsi+Pxpsi+Pypsi+Pzpsi)
+        PSI3_2=1/2*(Spsi+Pxpsi-Pypsi-Pzpsi)
+        PSI3_3=1/2*(Spsi-Pxpsi-Pypsi+Pzpsi)
+        PSI3_4=1/2*(Spsi-Pxpsi+Pypsi-Pzpsi)
+        return PSI3_1,PSI3_2,PSI3_3,PSI3_4
+    def sp2d(self):
+        Spsi =  electron.normalized_wf3D(electron,3,0,0)
+        Pxpsi=  electron.normalized_wf3D(electron,3,1,1)
+        Pypsi = electron.normalized_wf3D(electron,3,1,-1)
+        Dx2y2psi = electron.normalized_wf3D(electron,3,2,2)
+        PSI2D_1=1/2*Spsi+1/np.sqrt(2)*Pxpsi+1/2*Dx2y2psi
+        PSI2D_2=1/2*Spsi-1/np.sqrt(2)*Pxpsi+1/2*Dx2y2psi
+        PSI2D_3=1/2*Spsi+1/np.sqrt(2)*Pypsi-1/2*Dx2y2psi
+        PSI2D_4=1/2*Spsi-1/np.sqrt(2)*Pypsi-1/2*Dx2y2psi
+        return PSI2D_1,PSI2D_2,PSI2D_3,PSI2D_4
+    def sp3d(self):
+        Spsi =  electron.normalized_wf3D(electron,3,0,0)
+        Pxpsi=  electron.normalized_wf3D(electron,3,1,1)
+        Pypsi = electron.normalized_wf3D(electron,3,1,-1)
+        Pzpsi = electron.normalized_wf3D(electron,3,1,0)
+        Dz2psi = electron.normalized_wf3D(electron,3,2,0)
+        PSIP3D_1=np.sqrt(1/3)*(Spsi+np.sqrt(2)*Pzpsi)
+        PSIP3D_2=1/np.sqrt(3)*(Spsi-np.sqrt(1/2)*Pxpsi+np.sqrt(3/2)*Pypsi)
+        PSIP3D_3=1/np.sqrt(3)*(Spsi-np.sqrt(1/2)*Pxpsi-np.sqrt(3/2)*Pzpsi)
+        PSIP3D_4=1/np.sqrt(2)*(Dz2psi+Pzpsi)
+        PSIP3D_5=1/np.sqrt(2)*(-Dz2psi+Pzpsi)
+        return PSIP3D_1,PSIP3D_2,PSIP3D_3,PSIP3D_4,PSIP3D_5
+    def sp3d2(self):
+        Spsi =  electron.normalized_wf3D(electron,3,0,0)
+        Pxpsi=  electron.normalized_wf3D(electron,3,1,1)
+        Pypsi = electron.normalized_wf3D(electron,3,1,-1)
+        Pzpsi = electron.normalized_wf3D(electron,3,1,0)
+        Dz2psi = electron.normalized_wf3D(electron,3,2,0)
+        Dx2y2psi = electron.normalized_wf3D(electron,3,2,2)
+        PSIP3D2_1=np.sqrt(1/6)*(Spsi+np.sqrt(3)*Pzpsi+np.sqrt(2)*Dz2psi)
+        PSIP3D2_2=np.sqrt(1/6)*(Spsi+np.sqrt(3)*Pzpsi-np.sqrt(1/2)*Dz2psi+np.sqrt(3/2)*Dx2y2psi)
+        PSIP3D2_3=np.sqrt(1/6)*(Spsi+np.sqrt(3)*Pzpsi-np.sqrt(1/2)*Dz2psi-np.sqrt(3/2)*Dx2y2psi)
+        PSIP3D2_4=np.sqrt(1/6)*(Spsi+np.sqrt(3)*Pzpsi-np.sqrt(1/2)*Dz2psi+np.sqrt(3/2)*Dx2y2psi)
+        PSIP3D2_5=np.sqrt(1/6)*(Spsi+np.sqrt(3)*Pzpsi-np.sqrt(1/2)*Dz2psi-np.sqrt(3/2)*Dx2y2psi)
+        PSIP3D2_6=np.sqrt(1/6)*(Spsi-np.sqrt(3)*Pzpsi+np.sqrt(2)*Dz2psi)
+        return PSIP3D2_1,PSIP3D2_2,PSIP3D2_3,PSIP3D2_4,PSIP3D2_5,PSIP3D2_6
 class plot:
     def __init__(self, *args):
         super(plot, self).__init__(*args)
@@ -206,4 +273,806 @@ class plot:
                         zaxis=dict(visible=False)),
                         font=dict(
                         color="white"))
+        fig.show()
+    def plot_sp(self,packageCartesian=None,x=None,y=None,z=None):
+        if packageCartesian:
+            PSI1, PSI2 = hibrydization.sp(hibrydization)
+            # Grafico
+            fig = go.Figure()
+            Iso1 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI1).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI1).min(),
+                isomax=.75 * abs(PSI1).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso2 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI2).min(),
+                isomax=.75 * abs(PSI2).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            fig.update_layout(
+            title=fr'$sp:  Lineal$',paper_bgcolor="black",
+            scene=dict(
+                xaxis=dict(visible=False),
+                yaxis=dict(visible=False),
+                zaxis=dict(visible=False)
+            ),
+            font=dict(color="white")
+            )
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.show()
+        else:    
+            PSI1, PSI2 = hibrydization.sp(hibrydization)
+            # Grafico
+            fig = go.Figure()
+            Iso1 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI1).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI1).min(),
+                isomax=.75 * abs(PSI1).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso2 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI2).min(),
+                isomax=.75 * abs(PSI2).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            fig.update_layout(
+                title=fr'$sp:  Lineal$',paper_bgcolor="black",
+                scene=dict(
+                    xaxis=dict(visible=False),
+                    yaxis=dict(visible=False),
+                    zaxis=dict(visible=False)
+                ),
+                font=dict(color="white")
+            )
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.show()
+    def plot_sp2(self,packageCartesian=None,x=None,y=None,z=None):
+        PSI2_1, PSI2_2, PSI2_3 = hibrydization.sp2(hibrydization)
+        # Grafico
+        if packageCartesian:
+            fig = go.Figure()
+            Iso1 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI2_1).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI2_1).min(),
+                isomax=.75 * abs(PSI2_1).max(),
+                surface_count=4,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso2 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI2_2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI2_2).min(),
+                isomax=.75 * abs(PSI2_2).max(),
+                surface_count=4,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso3 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI2_3).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI2_3).min(),
+                isomax=.75 * abs(PSI2_3).max(),
+                surface_count=4,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            fig.update_layout(
+                title=fr'$sp^2: Trigonal Planar$',
+                template='plotly_dark',
+                autosize=False,
+                width=700,
+                height=700,
+                margin=dict(l=65, r=50, b=65, t=90),
+                scene=dict(
+                    xaxis=dict(showgrid=False, visible=False),
+                    yaxis=dict(showgrid=False, visible=False),
+                    zaxis=dict(showgrid=False, visible=False)
+                )
+            )
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.add_trace(Iso3)
+            fig.show()
+        else:
+            fig = go.Figure()
+            Iso1 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI2_1).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI2_1).min(),
+                isomax=.75 * abs(PSI2_1).max(),
+                surface_count=4,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso2 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI2_2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI2_2).min(),
+                isomax=.75 * abs(PSI2_2).max(),
+                surface_count=4,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso3 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI2_3).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI2_3).min(),
+                isomax=.75 * abs(PSI2_3).max(),
+                surface_count=4,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            fig.update_layout(
+                title=fr'$sp^2: Trigonal Planar$',
+                template='plotly_dark',
+                autosize=False,
+                width=700,
+                height=700,
+                margin=dict(l=65, r=50, b=65, t=90),
+                scene=dict(
+                    xaxis=dict(showgrid=False, visible=False),
+                    yaxis=dict(showgrid=False, visible=False),
+                    zaxis=dict(showgrid=False, visible=False)
+                )
+            )
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.add_trace(Iso3)
+            fig.show()
+    def plot_sp3(self,packageCartesian=None,x=None,y=None,z=None):
+        PSI3_1, PSI3_2, PSI3_3, PSI3_4 = hibrydization.sp3(hibrydization)
+        if packageCartesian:
+            # Grafico
+            fig = go.Figure()
+            Iso1 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI3_1).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI3_1).min(),
+                isomax=.75 * abs(PSI3_1).max(),
+                surface_count=6,
+                opacity=0.6,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso2 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI3_2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI3_2).min(),
+                isomax=.75 * abs(PSI3_2).max(),
+                surface_count=6,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso3 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI3_3).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI3_3).min(),
+                isomax=.75 * abs(PSI3_3).max(),
+                surface_count=6,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso4 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI3_4).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI3_4).min(),
+                isomax=.75 * abs(PSI3_4).max(),
+                surface_count=6,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            fig.update_layout(
+                title=fr'$sp^3: Tetrahedral$',
+                template='plotly_dark',
+                autosize=False,
+                width=700,
+                height=700,
+                margin=dict(l=65, r=50, b=65, t=90),
+                scene=dict(
+                    xaxis=dict(showgrid=False, visible=False),
+                    yaxis=dict(showgrid=False, visible=False),
+                    zaxis=dict(showgrid=False, visible=False)
+                )
+            )
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.add_trace(Iso3)
+            fig.add_trace(Iso4)
+            fig.show()
+    # Grafico
+        else:
+
+            fig = go.Figure()
+            Iso1 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI3_1).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI3_1).min(),
+                isomax=.75 * abs(PSI3_1).max(),
+                surface_count=6,
+                opacity=0.6,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso2 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI3_2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI3_2).min(),
+                isomax=.75 * abs(PSI3_2).max(),
+                surface_count=6,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso3 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI3_3).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI3_3).min(),
+                isomax=.75 * abs(PSI3_3).max(),
+                surface_count=6,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso4 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI3_4).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSI3_4).min(),
+                isomax=.75 * abs(PSI3_4).max(),
+                surface_count=6,
+                opacity=0.3,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            fig.update_layout(
+                title=fr'$sp^3: Tetrahedral$',
+                template='plotly_dark',
+                autosize=False,
+                width=700,
+                height=700,
+                margin=dict(l=65, r=50, b=65, t=90),
+                scene=dict(
+                    xaxis=dict(showgrid=False, visible=False),
+                    yaxis=dict(showgrid=False, visible=False),
+                    zaxis=dict(showgrid=False, visible=False)
+                )
+            )
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.add_trace(Iso3)
+            fig.add_trace(Iso4)
+            fig.show()
+    def plot_sp2d(self,packageCartesian=None,x=None,y=None,z=None):
+        PSI2D_1,PSI2D_2,PSI2D_3,PSI2D_4 = hibrydization.sp2d(hibrydization)
+        if packageCartesian:
+            fig = go.Figure()
+            Iso1= go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI2D_1).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75*abs(PSI2D_1).min(),
+                isomax=.75*abs(PSI2D_1).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False,y_show=False,z_show=False)
+            )
+            Iso2= go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI2D_2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75*abs(PSI2D_2).min(),
+                isomax=.75*abs(PSI2D_2).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False,y_show=False,z_show=False)
+            )
+            Iso3= go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI2D_3).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75*abs(PSI2D_3).min(),
+                isomax=.75*abs(PSI2D_3).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False,y_show=False,z_show=False)
+            )
+            Iso4= go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSI2D_4).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75*abs(PSI2D_4).min(),
+                isomax=.75*abs(PSI2D_4).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False,y_show=False,z_show=False)
+            )
+            fig.update_layout(title=fr'$sp^2d: Squere Planar,$',template = 'plotly_dark',autosize=False,
+                                    width=700, height=700,
+                                    margin=dict(l=65, r=50, b=65, t=90),
+                                    scene=dict(xaxis=dict(showgrid=False, visible=False),
+                                    yaxis=dict(showgrid=False, visible=False),
+                                    zaxis=dict(showgrid=False, visible=False)))
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.add_trace(Iso3)
+            fig.add_trace(Iso4)
+            fig.show()
+        else:
+
+            fig = go.Figure()
+            Iso1= go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI2D_1).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75*abs(PSI2D_1).min(),
+                isomax=.75*abs(PSI2D_1).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False,y_show=False,z_show=False)
+            )
+            Iso2= go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI2D_2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75*abs(PSI2D_2).min(),
+                isomax=.75*abs(PSI2D_2).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False,y_show=False,z_show=False)
+            )
+            Iso3= go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI2D_3).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75*abs(PSI2D_3).min(),
+                isomax=.75*abs(PSI2D_3).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False,y_show=False,z_show=False)
+            )
+            Iso4= go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSI2D_4).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75*abs(PSI2D_4).min(),
+                isomax=.75*abs(PSI2D_4).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False,y_show=False,z_show=False)
+            )
+            fig.update_layout(title=fr'$sp^2d: Squere Planar,$',template = 'plotly_dark',autosize=False,
+                                    width=700, height=700,
+                                    margin=dict(l=65, r=50, b=65, t=90),
+                                    scene=dict(xaxis=dict(showgrid=False, visible=False),
+                                    yaxis=dict(showgrid=False, visible=False),
+                                    zaxis=dict(showgrid=False, visible=False)))
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.add_trace(Iso3)
+            fig.add_trace(Iso4)
+            fig.show()
+    def plot_sp3d(self,packageCartesian=None,x=None,y=None,z=None): 
+        PSIP3D_1, PSIP3D_2, PSIP3D_3, PSIP3D_4, PSIP3D_5 = hibrydization.sp3d(hibrydization)
+        if packageCartesian:
+            fig = go.Figure()
+            Iso1 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSIP3D_1).flatten(),
+                colorscale='Portland',
+                isomin=-.75 * abs(PSIP3D_1).min(),
+                isomax=.75 * abs(PSIP3D_1).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso2 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSIP3D_2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSIP3D_2).min(),
+                isomax=.75 * abs(PSIP3D_2).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso3 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSIP3D_3).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSIP3D_3).min(),
+                isomax=.75 * abs(PSIP3D_3).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso4 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSIP3D_4).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSIP3D_4).min(),
+                isomax=.75 * abs(PSIP3D_4).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso5 = go.Isosurface(
+                x=packageCartesian[0].flatten(),
+                y=packageCartesian[1].flatten(),
+                z=packageCartesian[2].flatten(),
+                value=abs(PSIP3D_5).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSIP3D_5).min(),
+                isomax=.75 * abs(PSIP3D_5).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            fig.update_layout(
+                title=fr'$sp^3d$ Trigonal Bipyramidal',
+                template='plotly_dark',
+                autosize=False,
+                width=700,
+                height=700,
+                margin=dict(l=65, r=50, b=65, t=90),
+                scene=dict(
+                    xaxis=dict(showgrid=False, visible=False),
+                    yaxis=dict(showgrid=False, visible=False),
+                    zaxis=dict(showgrid=False, visible=False)
+                )
+            )
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.add_trace(Iso3)
+            fig.add_trace(Iso4)
+            fig.add_trace(Iso5)
+            fig.show()
+        else:
+
+            fig = go.Figure()
+            Iso1 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSIP3D_1).flatten(),
+                colorscale='Portland',
+                isomin=-.75 * abs(PSIP3D_1).min(),
+                isomax=.75 * abs(PSIP3D_1).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso2 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSIP3D_2).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSIP3D_2).min(),
+                isomax=.75 * abs(PSIP3D_2).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso3 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSIP3D_3).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSIP3D_3).min(),
+                isomax=.75 * abs(PSIP3D_3).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso4 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSIP3D_4).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSIP3D_4).min(),
+                isomax=.75 * abs(PSIP3D_4).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            Iso5 = go.Isosurface(
+                x=x.flatten(),
+                y=y.flatten(),
+                z=z.flatten(),
+                value=abs(PSIP3D_5).flatten(),
+                colorscale='RdYlBu_r',
+                isomin=-.75 * abs(PSIP3D_5).min(),
+                isomax=.75 * abs(PSIP3D_5).max(),
+                surface_count=6,
+                opacity=0.5,
+                caps=dict(x_show=False, y_show=False, z_show=False)
+            )
+            fig.update_layout(
+                title=fr'$sp^3d$ Trigonal Bipyramidal',
+                template='plotly_dark',
+                autosize=False,
+                width=700,
+                height=700,
+                margin=dict(l=65, r=50, b=65, t=90),
+                scene=dict(
+                    xaxis=dict(showgrid=False, visible=False),
+                    yaxis=dict(showgrid=False, visible=False),
+                    zaxis=dict(showgrid=False, visible=False)
+                )
+            )
+            fig.add_trace(Iso1)
+            fig.add_trace(Iso2)
+            fig.add_trace(Iso3)
+            fig.add_trace(Iso4)
+            fig.add_trace(Iso5)
+            fig.show()
+    def plot_sp3d2(self,packageCartesian=None,x=None,y=None,z=None):
+      PSIP3D2_1,PSIP3D2_2,PSIP3D2_3,PSIP3D2_4,PSIP3D2_5,PSIP3D2_6 = hibrydization.sp3d2(hibrydization)
+      if packageCartesian:
+        fig = go.Figure()
+        Iso1= go.Isosurface(
+            x=packageCartesian[0].flatten(),
+            y=packageCartesian[1].flatten(),
+            z=packageCartesian[2].flatten(),
+            value=abs(PSIP3D2_1).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_1).min(),
+            isomax=.75*abs(PSIP3D2_1).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso2= go.Isosurface(
+            x=packageCartesian[0].flatten(),
+            y=packageCartesian[1].flatten(),
+            z=packageCartesian[2].flatten(),
+            value=abs(PSIP3D2_2).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_2).min(),
+            isomax=.75*abs(PSIP3D2_2).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso3= go.Isosurface(
+            x=packageCartesian[0].flatten(),
+            y=packageCartesian[1].flatten(),
+            z=packageCartesian[2].flatten(),
+            value=abs(PSIP3D2_3).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_3).min(),
+            isomax=.75*abs(PSIP3D2_3).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso4= go.Isosurface(
+            x=packageCartesian[0].flatten(),
+            y=packageCartesian[1].flatten(),
+            z=packageCartesian[2].flatten(),
+            value=abs(PSIP3D2_4).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_4).min(),
+            isomax=.75*abs(PSIP3D2_4).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso5= go.Isosurface(
+            x=packageCartesian[0].flatten(),
+            y=packageCartesian[1].flatten(),
+            z=packageCartesian[2].flatten(),
+            value=abs(PSIP3D2_5).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_5).min(),
+            isomax=.75*abs(PSIP3D2_5).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso6= go.Isosurface(
+            x=packageCartesian[0].flatten(),
+            y=packageCartesian[1].flatten(),
+            z=packageCartesian[2].flatten(),
+            value=abs(PSIP3D2_6).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_6).min(),
+            isomax=.75*abs(PSIP3D2_6).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        fig.update_layout(title=fr'$sp^3d^2: Octahedral$',template = 'plotly_dark',autosize=False,
+                                    width=700, height=700,
+                                    margin=dict(l=65, r=50, b=65, t=90),
+                                    scene=dict(xaxis=dict(showgrid=False, visible=False),
+                                    yaxis=dict(showgrid=False, visible=False),
+                                    zaxis=dict(showgrid=False, visible=False)))
+        fig.add_trace(Iso1)
+        fig.add_trace(Iso2)
+        fig.add_trace(Iso3)
+        fig.add_trace(Iso4)
+        fig.add_trace(Iso5)
+        fig.add_trace(Iso6)
+        fig.show()      
+      else:
+            
+        fig = go.Figure()
+        Iso1= go.Isosurface(
+            x=x.flatten(),
+            y=y.flatten(),
+            z=z.flatten(),
+            value=abs(PSIP3D2_1).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_1).min(),
+            isomax=.75*abs(PSIP3D2_1).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso2= go.Isosurface(
+            x=x.flatten(),
+            y=y.flatten(),
+            z=z.flatten(),
+            value=abs(PSIP3D2_2).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_2).min(),
+            isomax=.75*abs(PSIP3D2_2).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso3= go.Isosurface(
+            x=x.flatten(),
+            y=y.flatten(),
+            z=z.flatten(),
+            value=abs(PSIP3D2_3).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_3).min(),
+            isomax=.75*abs(PSIP3D2_3).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso4= go.Isosurface(
+            x=x.flatten(),
+            y=y.flatten(),
+            z=z.flatten(),
+            value=abs(PSIP3D2_4).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_4).min(),
+            isomax=.75*abs(PSIP3D2_4).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso5= go.Isosurface(
+            x=x.flatten(),
+            y=y.flatten(),
+            z=z.flatten(),
+            value=abs(PSIP3D2_5).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_5).min(),
+            isomax=.75*abs(PSIP3D2_5).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        Iso6= go.Isosurface(
+            x=x.flatten(),
+            y=y.flatten(),
+            z=z.flatten(),
+            value=abs(PSIP3D2_6).flatten(),
+            colorscale='RdYlBu_r',
+            isomin=-.75*abs(PSIP3D2_6).min(),
+            isomax=.75*abs(PSIP3D2_6).max(),
+            surface_count=6,
+            opacity=0.5,
+            caps=dict(x_show=False,y_show=False,z_show=False)
+        )
+        fig.update_layout(title=fr'$sp^3d^2: Octahedral$',template = 'plotly_dark',autosize=False,
+                                    width=700, height=700,
+                                    margin=dict(l=65, r=50, b=65, t=90),
+                                    scene=dict(xaxis=dict(showgrid=False, visible=False),
+                                    yaxis=dict(showgrid=False, visible=False),
+                                    zaxis=dict(showgrid=False, visible=False)))
+        fig.add_trace(Iso1)
+        fig.add_trace(Iso2)
+        fig.add_trace(Iso3)
+        fig.add_trace(Iso4)
+        fig.add_trace(Iso5)
+        fig.add_trace(Iso6)
         fig.show()
