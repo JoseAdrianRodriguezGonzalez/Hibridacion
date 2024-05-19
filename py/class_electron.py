@@ -48,6 +48,23 @@ class electron:
         if m>l:
                 raise ValueError("l and m must be postive, it means, that l can't be smaller than m")
         return R,phi,theta,fcolors,l,m 
+    def normalized_wf(self,d,n,l,m):
+        r     = np.linspace(0, d, 10000)
+        pr = electron.radial(self,r, n, l)**2 * r**2 * (r[1]-r[0])
+        max_r = r[ np.where(np.cumsum(pr) >0.95)[0][0] ]
+
+        # Set coordinates grid to assign a certain probability to each point (x, y) in the plane
+        x = y = np.linspace(-max_r, max_r, 501)
+        x, y = np.meshgrid(x, y)
+        r = np.sqrt((x ** 2 + y ** 2))
+
+        # Ψnlm(r,θ,φ) = Rnl(r).Ylm(θ,φ)
+        psi = electron.radial(self,r, n, l) * sph_harm(m, l, 0, np.arctan(x / (y + 1e-7)))
+        psi_sq = np.abs(psi)**2
+        return psi_sq,max_r,n,l,m
+
+
+
 class plot:
     def __init__(self, *args):
         super(plot, self).__init__(*args)
@@ -99,6 +116,7 @@ class plot:
                             color="white"))
             fig.show()
     def plot_spherical_imaginary(self,package=None,R=None,theta=None,phi=None,fcolors=None,l=None,m=None):
+
         if package:
             fig = go.Figure(data=[go.Surface(x=package[0]*np.sin(package[1]) * np.cos(package[2]),
                                      y=package[0]*np.sin(package[1]) * np.sin(package[2]),
@@ -135,3 +153,24 @@ class plot:
                             font=dict(
                             color="white"))
             fig.show()
+    def plot_wf_2d(self,package=None,psi_sq=None,max_r=None,n=None,l=None,m=None):
+        fig, ax = plt.subplots()
+        if package:
+            ax.contour(package[0], 40, cmap='RdBu', extent=[-package[1], package[1],-package[1], package[1]])
+            ax.set_title(r'$|\psi_{{({0}, {1}, {2})}}|^2$'.format(package[2], package[3], package[4]), fontsize=15)
+            ax.set_aspect('equal')
+            ax.set_xlabel(r'$x$')
+            ax.set_ylabel(r'$y$')
+            ax.set_xlim(-package[1], package[1])
+            ax.set_ylim(-package[1], package[1])
+            plt.show()
+        else:
+            ax.contour(psi_sq, 40, cmap='RdBu', extent=[-max_r, max_r,-max_r, max_r])
+            ax.set_title(r'$|\psi_{{({0}, {1}, {2})}}|^2$'.format(n, l, m), fontsize=15)
+            ax.set_aspect('equal')
+            ax.set_xlabel(r'$x$')
+            ax.set_ylabel(r'$y$')
+            ax.set_xlim(-max_r, max_r)
+            ax.set_ylim(-max_r, max_r)
+            plt.show()
+
