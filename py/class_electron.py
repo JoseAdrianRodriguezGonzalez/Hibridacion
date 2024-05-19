@@ -62,7 +62,20 @@ class electron:
         psi = electron.radial(self,r, n, l) * sph_harm(m, l, 0, np.arctan(x / (y + 1e-7)))
         psi_sq = np.abs(psi)**2
         return psi_sq,max_r,n,l,m
-
+    def Cartesian_definition(self):
+      xyz = np.linspace(-10, 10, 51)
+      x,y,z = np.meshgrid(xyz, xyz, xyz, sparse=False)
+      return x,y,z
+    def CartesianToSpherical(self,x,y,z):
+        r = np.sqrt(x**2 + y**2 + z**2)
+        phi = np.arctan2(y+1e-10, x)
+        theta = np.where( np.isclose(r, 0.0), np.zeros_like(r), np.arccos(z/r) )
+        return r,phi,theta
+    def normalized_wf3D(self,n,l,m):
+        x,y,z = electron.Cartesian_definition(self)
+        r,phi,theta = electron.CartesianToSpherical(self,x,y,z)
+        psi = electron.radial(self,r, n, l) * np.real(sph_harm(m, l, phi, theta))
+        return psi
 
 
 class plot:
@@ -173,4 +186,24 @@ class plot:
             ax.set_xlim(-max_r, max_r)
             ax.set_ylim(-max_r, max_r)
             plt.show()
-
+    def plot_wf_3d(self,psi):
+        x,y,z = electron.Cartesian_definition(electron)
+        fig= go.Figure(data=go.Isosurface(
+        x=x.flatten(),
+        y=y.flatten(),
+        z=z.flatten(),
+        value=abs(psi).flatten(),
+        colorscale='RdBu',
+        isomin=-.75*abs(psi).min(),
+        isomax=.75*abs(psi).max(),
+        surface_count=6,
+        opacity=0.5,
+        caps=dict(x_show=False,y_show=False,z_show=False)
+        ))
+        fig.update_layout(paper_bgcolor="black",scene=dict(
+                        xaxis=dict(visible=False),
+                        yaxis=dict(visible=False),
+                        zaxis=dict(visible=False)),
+                        font=dict(
+                        color="white"))
+        fig.show()
