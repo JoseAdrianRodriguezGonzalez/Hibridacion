@@ -1,13 +1,13 @@
 # Hibridación
->El proyecto está seccionado en diferentes etapas para gráficar la hibridación
-> * La parte radial
-> * Los armónixocs esféricos reales
-> * Los armónicos esféricos complejos
-> * Funciones de probabilidad
->> * 2D
->> * 3D
-> * Hibrdiación.
-> Cada tema contiene una pequeñas explicación de la matemática empleada
+El proyecto está seccionado en diferentes etapas para gráficar la hibridación
+ * La parte radial
+ * Los armónixocs esféricos reales
+ * Los armónicos esféricos complejos
+ * Funciones de probabilidad
+   - 2D
+   - 3D
+ * Hibrdiación.
+ Cada tema contiene una pequeñas explicación de la matemática empleada
 
 >[!NOTE]
 >En está sección principal, contendrá una breve explicación del proyecto a su vez que contendrá imágenes7
