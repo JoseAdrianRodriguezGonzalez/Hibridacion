@@ -10,7 +10,10 @@
 > Cada tema contiene una pequeñas explicación de la matemática empleada
 
 >[!NOTE]
+>En está sección principal, contendrá una breve explicación del proyecto a su vez que contendrá imágenes7
 
+>[!WARNING]
+>La sección de hibridación, no se puede visualizar por completo en Colab, por lo que se recomienda que se pueda visualizar en algún software que permita visualizar archivos de Jupyter
 
  ## Ecuación de Erwin Schrödinger
  > Las gráficas provistas
