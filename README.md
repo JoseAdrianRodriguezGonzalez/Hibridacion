@@ -8,7 +8,10 @@
 >> * 3D
 > * Hibrdiación.
 > Cada tema contiene una pequeñas explicación de la matemática empleada
->![NOTE] 
+
+>![NOTE]
+>
+
  ## Ecuación de Erwin Schrödinger
  > Las gráficas provistas
 
