@@ -10,7 +10,7 @@
 > Cada tema contiene una pequeñas explicación de la matemática empleada
 
 >[!NOTE]
->
+
 
  ## Ecuación de Erwin Schrödinger
  > Las gráficas provistas
