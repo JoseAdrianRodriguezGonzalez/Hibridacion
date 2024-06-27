@@ -25,5 +25,5 @@ El proyecto está seccionado en diferentes etapas para gráficar la hibridación
 
 Para hacer posible este proyecto fue realizado por:
 
-* ![Isabel](https://github.com/Isa-Rocha31415)
-* ![Adrián](https://github.com/JoseAdrianRodriguezGonzalez)  
+* [Isabel](https://github.com/Isa-Rocha31415)
+* [Adrián](https://github.com/JoseAdrianRodriguezGonzalez)  
