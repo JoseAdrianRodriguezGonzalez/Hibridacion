@@ -18,6 +18,6 @@ El proyecto está seccionado en diferentes etapas para gráficar la hibridación
  ## Ecuación de Erwin Schrödinger
  Las gráficas provistas utilizan la solución de la ecuación de Schrödinger para el átomo del hidrógeno.
 
- $$H\psi=ih\frac{partial v}{partial t}\psi$$
+ $$H\psi=ih\frac{\partial \psi}{\partial t}$$
 
 >>   ![Representación de las coordenadas esféricas](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/blob/main/assets/The-point-A-on-spherical-plane_Q320.jpg)
