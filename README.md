@@ -10,7 +10,7 @@ El proyecto está seccionado en diferentes etapas para gráficar la hibridación
  Cada tema contiene una pequeñas explicación de la matemática empleada
 
 >[!NOTE]
->En está sección principal, contendrá una breve explicación del proyecto a su vez que contendrá imágenes7
+>En está sección principal, contendrá una breve explicación del proyecto a su vez que contendrá imágenes
 
 >[!WARNING]
 >La sección de hibridación, no se puede visualizar por completo en Colab, por lo que se recomienda que se pueda visualizar en algún software que permita visualizar archivos de Jupyter
@@ -21,3 +21,7 @@ El proyecto está seccionado en diferentes etapas para gráficar la hibridación
  $$H\psi=i\hbar\frac{\partial \psi}{\partial t}$$
 
 >>   ![Armónicos esféricos](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/blob/main/assets/A4.png)
+# Colaboradores
+
+Para hacer posible este proyecto fue realizado por:
+* 
