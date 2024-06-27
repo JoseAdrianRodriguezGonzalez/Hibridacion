@@ -1,7 +1,7 @@
 # Hibridación
 El proyecto está seccionado en diferentes etapas para gráficar la hibridación
  * La parte radial
- * Los armónixocs esféricos reales
+ * Los armónicos esféricos reales
  * Los armónicos esféricos complejos
  * Funciones de probabilidad
    - 2D
@@ -9,8 +9,8 @@ El proyecto está seccionado en diferentes etapas para gráficar la hibridación
  * Hibridiación.
 
 Cada tema contiene una pequeñas explicación de la matemática empleada
-# instalación
-Para poder instalar el proyecto necesita contar con la versión más reciente de jupyter, o por lo menos la versión 6 de jupyter, en dado caso puede visualizarlo en google Colab, sin embargo, tomese en cuenta el *warning* de abajo.
+# Instalación
+Para poder instalar el proyecto necesita contar con la versión más reciente de jupyter, o por lo menos la versión 6 de jupyter, en dado caso puede visualizarlo en Google Colab, sin embargo, tomese en cuenta el *warning* de abajo.
 
 >[!NOTE]
 >En está sección principal, contendrá una breve explicación del proyecto a su vez que contendrá imágenes
