@@ -34,9 +34,12 @@ jobs:
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./web
-          destination: ./_site
+          destination: ./web/_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          name: web-artifact
+          path: ./web/_site
 
   # Deployment job
   deploy:
@@ -46,6 +49,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Download artifact
+        uses: actions/download-pages-artifact@v3
+        with:
+          name: web-artifact
+          path: ./web/_site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
