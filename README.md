@@ -1,12 +1,12 @@
 # Hibridación
 El proyecto está seccionado en diferentes etapas para gráficar la hibridación
- * La parte radial
- * Los armónicos esféricos reales
- * Los armónicos esféricos complejos
- * Funciones de probabilidad
-   - 2D
-   - 3D
- * Hibridiación.
+ * [La parte radial](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/tree/2bf4264a83fbd573a454ea5dacbccdfb4fb00c84/radial)
+ * [Los armónicos esféricos reales](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/tree/2bf4264a83fbd573a454ea5dacbccdfb4fb00c84/Real)
+ * [Los armónicos esféricos complejos](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/tree/2bf4264a83fbd573a454ea5dacbccdfb4fb00c84/spherical_complex)
+ * [Funciones de probabilidad](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/tree/2bf4264a83fbd573a454ea5dacbccdfb4fb00c84/wavefunction_Probability)
+   - [2D](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/tree/2bf4264a83fbd573a454ea5dacbccdfb4fb00c84/wavefunction_Probability/2D)
+   - [3D](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/tree/2bf4264a83fbd573a454ea5dacbccdfb4fb00c84/wavefunction_Probability/3D)
+ * [Hibridiación.](https://github.com/JoseAdrianRodriguezGonzalez/Hibridacion/tree/2bf4264a83fbd573a454ea5dacbccdfb4fb00c84/hibridacion)
 
 Cada tema contiene una pequeñas explicación de la matemática empleada
 # Instalación
