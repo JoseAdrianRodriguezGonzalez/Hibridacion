@@ -34,7 +34,10 @@ Para hacer posible este proyecto fue realizado por:
   
 ## Solución de la ecuación de Erwin Schrödinger
 Siendo:
+
 $$i\hbar \frac{\partial \Psi}{\partial t} = -\frac{\hbar^2}{2m}\nabla^2 \Psi+V(x,y,z)\Psi$$
+
 Podemos observar que la función $\Psi(x,y,z,t)\rightarrow \psi(x,y,z)T(t)$
 $\therefore$
+
 $$i\hbar \frac{\partial \psi T}{\partial t} = -T\frac{\hbar^2}{2m}\nabla^2 \psi+V(x,y,z)\psi T$$
