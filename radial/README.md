@@ -1,7 +1,7 @@
 # Función radial.
  La función radial está asociada a la parte real de la función de onda:
 
- $$\psi_{nlm} =$$
+ $$\psi_{nlm} =R_{nl} \cdot$$
  
  Una idea para poder llegar al concepto de *función radial*, es necesario recordar la ecuación de de onda para el átomo de hidrogeno.
 
