@@ -11,5 +11,8 @@
 
  $$H\Psi=-\frac{\hbar^{2}}{2m}\nabla\Psi+V\Psi$$
 
- El potencial eléctrico nos permite intuir en que existe un potencial De cooulomb atractivo  a la vez que existe uno de repulsión, por lo que indica que existe un fuerza centrifuga que impide al electrón salirse del nucleo.
+ El potencial eléctrico nos permite intuir en que existe un potencial De Coulomb atractivo  a la vez que existe uno de repulsión, por lo que indica que existe un fuerza centrifuga que impide al electrón salirse del nucleo.
 
+La parte radial está asociada con la energía potencial,sin embargo,lo que verdaderamente expresa el radio atómico,es una de las soluciones de la ecuación de * Erwin Schrödinger para la parte radial *
+
+$$R_{nl}(r)=$$
