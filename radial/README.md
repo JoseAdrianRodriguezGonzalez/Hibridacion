@@ -15,4 +15,4 @@
 
 La parte radial está asociada con la energía potencial,sin embargo,lo que verdaderamente expresa el radio atómico,es una de las soluciones de la ecuación de *Erwin Schrödinger para la parte radial*
 
-$$R_{nl}(r)=\sqrt{(\frac{2}{na_0}^3 \frac{(n-l-1)!}{2n(n+l)!})}\cdot \(e^{\frac{-r}{na_0}}\(\frac{2r}{na_0}\)^l L^{2l+1}_{n-l-1}\(\frac{2r}{na_0}\)\)$$
+$$R_{nl}(r)=\sqrt{(\frac{2}{na_0}^3) (\frac{(n-l-1)!}{2n(n+l)!})}\cdot \(e^{\frac{-r}{na_0}}\(\frac{2r}{na_0}\)^l L^{2l+1}_{n-l-1}\(\frac{2r}{na_0}\)\)$$
